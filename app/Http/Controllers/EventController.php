@@ -34,9 +34,10 @@ class EventController extends Controller
 
         $event = Event::findOrFail($id);
 
+        $hasUserParticipant = false;
+
         if ($user) {
             $userEvents = $user->eventsAsParticipant;
-            $hasUserParticipant = false;
 
             foreach ($userEvents as $userEvent) {
                 if ($userEvent['id'] == $id) {

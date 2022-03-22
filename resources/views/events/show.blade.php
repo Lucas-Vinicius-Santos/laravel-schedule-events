@@ -18,8 +18,17 @@
                 </p>
                 <p class="events-participants">
                     <ion-icon name="people-outline"></ion-icon>
-                    {{count($event->users)}} participantes
-                </p>
+                    @if (count($event->users) < 1)
+                        Seja o primeiro a confirmar presença!
+                    @elseif (count($event->users) == 1)
+                        {{count($event->users)}} Participante
+                    @else
+                        {{count($event->users)}} Participantes
+                    @endif
+                </>
+
+  
+
                 <p class="event-owner">
                     <ion-icon name="star-outline"></ion-icon>
                     {{ $eventOwner['name'] }}

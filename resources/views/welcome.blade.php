@@ -30,7 +30,15 @@
           <div class="card-body">
             <p class="card-date">{{ date('d/m/Y', strtotime($event->date)) }}</p>
             <h5 class="card-title">{{ $event->title }}</h5>
-            <p class="card-participants">X Participantes</p>
+
+            @if (count($event->users) < 1)
+              <p class="card-participants">Seja o primeiro a confirmar presença!</p>
+            @elseif (count($event->users) == 1)
+              <p class="card-participants">{{count($event->users)}} Participante</p>
+            @else
+              <p class="card-participants">{{count($event->users)}} Participantes</p>
+            @endif
+
             <a href="events/{{$event->id}}" class="btn btn-primary">Saber mais</a>
           </div>
         </div>
